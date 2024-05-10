@@ -28,6 +28,8 @@ def solveBattle (battle_info):
     att_ships = ship_list_list[0]
     def_ships = ship_list_list[1]
 
+    addCanonsIfNoCannons (att_ships, def_ships)
+
     response = "**Attacker:\n**"
     for ship in att_ships:
         response += ship.toString() + "\n"
@@ -43,5 +45,16 @@ def solveBattle (battle_info):
         "defenseShipsStillAlive": battle.def_still_alive
     }
 
-
     return dico
+
+def addCanonsIfNoCannons (att_ships, def_ships):
+    """ this function adds a pseudo canon to defense ships if neither attacker nor defenser has canons"""
+    nb_canons = 0
+    for ship in att_ships + def_ships:
+        for i in range (5):
+            nb_canons+=ship.canon_array[i]
+    if nb_canons == 0:
+        for ship in def_ships:
+            ship.canon_array[0]+=1
+        
+
