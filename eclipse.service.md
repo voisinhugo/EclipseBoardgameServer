@@ -1,8 +1,7 @@
-Copy paste this file in /etc/systemd/system/eclipse.service
-Then enter
-```systemctl start eclipse.server```
-```systemctl enable eclipse.server```
+Copy paste this file in ```/etc/systemd/system/eclipse.service```
 
+
+```
 [Unit]
 Description=Flask server for eclipse webapp
 After=network.target
@@ -16,4 +15,11 @@ ExecStart=/usr/bin/python3 /home/pi/Eclipse/EclipseBoardgameServer/server.py
 
 [Install]
 WantedBy=multi-user.target
+```
 
+
+Then enter
+
+```systemctl start eclipse.server```
+
+```systemctl enable eclipse.server```
