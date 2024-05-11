@@ -34,6 +34,9 @@ def getBattleInfoFromForm ():
 
 
 if __name__ == '__main__':
-    ip_file = open ('ip.txt')
-    ip = ip_file.readline ()
-    app.run(debug=True, host=ip)
+    # change directory to containing directory
+    abspath = os.path.abspath(__file__)
+    dname = os.path.dirname(abspath)
+    os.chdir(dname)
+    # start webapp
+    app.run(debug=True, host="0.0.0.0")
