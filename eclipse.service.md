@@ -1,4 +1,6 @@
-Copy paste this file in ```/etc/systemd/system/eclipse.service```
+# Eclipse Server Service
+
+Copy paste this file in ```/etc/systemd/system/eclipseServer.service```
 
 ```service
 [Unit]
@@ -10,7 +12,8 @@ Type=simple
 Restart=always
 RestartSec=1
 User=pi
-ExecStart=cd /home/pi/Eclipse/EclipseBoardgameServer/server.py && gunicorn --workers 3 --bind unix:eclipse-boardgame-server.sock -m 007 wsgi:app
+WorkingDirectory=/home/pi/Eclipse/EclipseBoardgameServer
+ExecStart=/usr/bin/gunicorn --workers 3 --bind unix:eclipse-boardgame-server.sock -m 007 wsgi:app
 
 [Install]
 WantedBy=multi-user.target
@@ -18,6 +21,6 @@ WantedBy=multi-user.target
 
 Then enter
 
-```systemctl start eclipse.server```
+```systemctl start eclipseServer.service```
 
-```systemctl enable eclipse.server```
+```systemctl enable eclipseServer.service```
