@@ -49,7 +49,7 @@ def solveBattle (battle_info):
     return dico
 
 def addCanonsIfNoCannons (att_ships, def_ships):
-    """ this function adds a pseudo canon to defense ships if neither attacker nor defenser has canons"""
+    """ this function adds a pseudo canon to defense ships if neither attacker nor defender has canons"""
     nb_canons = 0
     for ship in att_ships + def_ships:
         for i in range (5):
