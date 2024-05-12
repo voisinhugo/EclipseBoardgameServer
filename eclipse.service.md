@@ -13,7 +13,7 @@ Restart=always
 RestartSec=1
 User=pi
 WorkingDirectory=/home/pi/Eclipse/EclipseBoardgameServer
-ExecStart=/usr/bin/gunicorn --workers 3 --bind unix:eclipse-boardgame-server.sock -m 007 wsgi:app
+ExecStart=/usr/bin/gunicorn --workers 3 --bind unix:eclipse-boardgame-server.sock -m 007 --timeout 1000 wsgi:app
 
 [Install]
 WantedBy=multi-user.target
