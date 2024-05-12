@@ -1,4 +1,5 @@
 from eclipse import *
+import re
 
 def solveBattle (battle_info):
     regex1 = re.search("(.*)(vs|VS|Vs|vS)(.*)" , battle_info)

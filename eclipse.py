@@ -4,11 +4,6 @@ import numpy as np
 import time
 import matplotlib.pyplot as plt
 
-
-
-import re
-
-
 def listToTuple (integer_list):
     tuple = ()
     for integer in integer_list:
