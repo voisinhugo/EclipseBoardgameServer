@@ -1,7 +1,6 @@
-from flask import Flask, render_template, send_from_directory, request, make_response, jsonify
+from flask import Flask, send_from_directory, request, jsonify
 import os
 from flask_cors import CORS, cross_origin
-import re
 from interface import *
 
 app = Flask(__name__)
@@ -23,20 +22,13 @@ def serveWebPage(path):
 def getBattleInfoFromForm ():
     dico = solveBattle (request.args.get("battleInfo"))
 
-    
     return jsonify(dico)
-    server_response = make_response(str(win_chance), 200)
-    server_response.mimetype = "text/plain"
-    return server_response
-    
-
-
 
 
 if __name__ == '__main__':
     # change directory to containing directory
     abspath = os.path.abspath(__file__)
-    dname = os.path.dirname(abspath)
-    os.chdir(dname)
+    dir_name = os.path.dirname(abspath)
+    os.chdir(dir_name)
     # start webapp
     app.run(debug=True, host="0.0.0.0")
