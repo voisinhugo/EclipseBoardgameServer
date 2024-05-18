@@ -59,8 +59,11 @@ jobs:
           PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
           SERVICE_NAME: ${{ secrets.GCP_SERVICE_NAME }}
           REGION: ${{ secrets.GCP_REGION }}
+          # echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > "${{ runner.temp }}/gcp-key.json"
         run: |
-          echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > "${{ runner.temp }}/gcp-key.json"
+          cat <<EOF > "${{ runner.temp }}/gcp-key.json"
+          ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+          EOF
           gcloud auth activate-service-account --key-file="${{ runner.temp }}/gcp-key.json"
           gcloud config set project $PROJECT_ID
           gcloud config set run/region $REGION
