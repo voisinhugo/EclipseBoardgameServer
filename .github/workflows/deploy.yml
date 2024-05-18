@@ -30,7 +30,12 @@ jobs:
           workflow: deploy-on-main.yml
 
       - name: Extract frontend build artifact
-        run: tar -xzf dist.tar.gz -C dist && ls
+        uses: ihiroky/extract-action@v1
+        with:
+          file_path: eclipseWebAppdist.zip
+      #     extract_dir: path_to_extract_directory
+      # - name: Extract frontend build artifact
+      #   run: tar -xzf eclipseWebAppdist.tar.gz -C dist && ls
 
       - name: Set up Python
         uses: actions/setup-python@v5
