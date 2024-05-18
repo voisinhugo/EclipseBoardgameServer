@@ -5,6 +5,9 @@ on:
     branches:
       # - main
       - deploy-on-google-cloud
+  repository_dispatch:
+    types: [frontend-build-finished]
+      
 
 jobs:
   deploy:
