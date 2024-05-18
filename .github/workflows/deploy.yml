@@ -60,8 +60,8 @@ jobs:
           SERVICE_NAME: ${{ secrets.GCP_SERVICE_NAME }}
           REGION: ${{ secrets.GCP_REGION }}
         run: |
-          echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > gcp-key.json
-          gcloud auth activate-service-account --key-file=gcp-key.json
+          echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > "${{ runner.temp }}/gcp-key.json"
+          gcloud auth activate-service-account --key-file="${{ runner.temp }}/gcp-key.json"
           gcloud config set project $PROJECT_ID
           gcloud config set run/region $REGION
           gcloud run deploy $SERVICE_NAME --source .
