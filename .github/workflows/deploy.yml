@@ -19,6 +19,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: eclipseWebAppdist
+          github-token: ${{ secrets.GA_READ_ACTION_TOKEN }}
           repository: voisinhugo/EclipseBoardgameWebApp
 
       - name: Extract frontend build artifact
