@@ -19,6 +19,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: eclipseWebAppdist
+          repository: voisinhugo/EclipseBoardgameWebApp
 
       - name: Extract frontend build artifact
         run: tar -xzf dist.tar.gz -C dist && ls
