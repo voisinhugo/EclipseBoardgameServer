@@ -3,8 +3,7 @@ name: Deploy Backend with Frontend
 on:
   push:
     branches:
-      # - main
-      - deploy-on-google-cloud
+      - master
   repository_dispatch:
     types: [frontend-build-finished]
       
