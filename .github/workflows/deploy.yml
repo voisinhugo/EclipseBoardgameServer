@@ -29,10 +29,14 @@ jobs:
           github_token: ${{ secrets.GA_READ_ACTION_TOKEN }}
           workflow: deploy-on-main.yml
 
+      - name: Ls
+        run: ls
+
       - name: Extract frontend build artifact
         uses: ihiroky/extract-action@v1
         with:
           file_path: eclipseWebAppdist.zip
+          verbose: true
       #     extract_dir: path_to_extract_directory
       # - name: Extract frontend build artifact
       #   run: tar -xzf eclipseWebAppdist.tar.gz -C dist && ls
