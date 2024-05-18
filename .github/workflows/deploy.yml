@@ -15,12 +15,19 @@ jobs:
       - name: Checkout backend repo
         uses: actions/checkout@v4
 
-      - name: Download frontend build artifact
-        uses: actions/download-artifact@v4
-        with:
+      # - name: Download frontend build artifact
+      #   uses: actions/download-artifact@v4
+      #   with:
           # name: eclipseWebAppdist
-          github-token: ${{ secrets.GA_READ_ACTION_TOKEN }}
-          repository: voisinhugo/EclipseBoardgameWebApp
+          # github-token: ${{ secrets.GA_READ_ACTION_TOKEN }}
+          # repository: voisinhugo/EclipseBoardgameWebApp
+      - name: Download frontend build artifact
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          name: eclipseWebAppdist
+          repo: voisinhugo/EclipseBoardgameWebApp
+          github_token: ${{ secrets.GA_READ_ACTION_TOKEN }}
+          workflow: deploy-on-main.yml
 
       - name: Extract frontend build artifact
         run: tar -xzf dist.tar.gz -C dist && ls
