@@ -15,12 +15,6 @@ jobs:
       - name: Checkout backend repo
         uses: actions/checkout@v4
 
-      # - name: Download frontend build artifact
-      #   uses: actions/download-artifact@v4
-      #   with:
-          # name: eclipseWebAppdist
-          # github-token: ${{ secrets.GA_READ_ACTION_TOKEN }}
-          # repository: voisinhugo/EclipseBoardgameWebApp
       - name: Download frontend build artifact
         uses: dawidd6/action-download-artifact@v3
         with:
@@ -28,38 +22,17 @@ jobs:
           repo: voisinhugo/EclipseBoardgameWebApp
           github_token: ${{ secrets.GA_READ_ACTION_TOKEN }}
           workflow: deploy-on-main.yml
-
-      - name: Ls
-        run: ls
         
       - name: Extract frontend build artifact
         uses: ihiroky/extract-action@v1
         with:
           file_path: dist.tar.gz
-          #     extract_dir: path_to_extract_directory
-
-      - name: Ls2
-        run: ls
-        #   - name: Extract frontend build artifact
-        # run: tar -xzf dist.tar.gz -C dist && ls
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install backend dependencies
-        run: |
-          python -m venv venv
-          . venv/bin/activate
-          pip install -r requirements.txt
 
       - name: Deploy to Google Cloud Run
         env:
           PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
           SERVICE_NAME: ${{ secrets.GCP_SERVICE_NAME }}
           REGION: ${{ secrets.GCP_REGION }}
-          # echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > "${{ runner.temp }}/gcp-key.json"
         run: |
           cat <<EOF > "${{ runner.temp }}/gcp-key.json"
           ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
